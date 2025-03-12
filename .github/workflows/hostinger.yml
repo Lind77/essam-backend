@@ -39,5 +39,4 @@ jobs:
             git pull origin master
 
             # Reinstall dependencies and rebuild
-            npm install 
-            npm run start
+            npm install
