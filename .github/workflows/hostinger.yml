@@ -41,4 +41,4 @@ jobs:
 
             # Reinstall dependencies and rebuild
             npm install 
-            npm run build
+            npm run start
