@@ -1,0 +1,44 @@
+name: Deploy Backend Node.js App to LiteSpeed Server
+
+on:
+  push:
+    branches:
+      - master # Cambia a la rama que uses para producción
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Obtener el código del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Paso 2: Configurar Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18" # Usa la versión de Node.js que necesites
+
+      # Paso 3: Instalar dependencias y construir el proyecto
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+
+      # Paso 4: Desplegar en el servidor usando SSH
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }} # Dirección del servidor
+          username: ${{ secrets.SSH_USER }} # Usuario SSH
+          key: ${{ secrets.SSH_KEY }} # Clave privada SSH
+          script: |
+            cd /var/www/essam-backend
+
+            # Pull the latest changes
+            git pull origin master
+
+            # Reinstall dependencies and rebuild
+            npm install 
+            npm run build
