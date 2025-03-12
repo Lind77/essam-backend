@@ -40,3 +40,6 @@ jobs:
 
             # Reinstall dependencies and rebuild
             npm install
+
+            # Iniciar o reiniciar la aplicación con PM2
+            pm2 restart essam-backend --update-env
