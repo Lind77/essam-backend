@@ -7,6 +7,6 @@ app.get('/', (req, res) =>{
     res.send('Hello World xdd');
 })
 
-app.listen(4000, (req, res) =>{
+app.listen(4000, '0.0.0.0', (req, res) =>{
     console.log('listening on port 4000');
 })
