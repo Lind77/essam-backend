@@ -21,10 +21,9 @@ jobs:
           node-version: "18" # Usa la versión de Node.js que necesites
 
       # Paso 3: Instalar dependencias y construir el proyecto
-      - name: Install dependencies and build
+      - name: Install dependencies
         run: |
           npm install
-          npm run build
 
       # Paso 4: Desplegar en el servidor usando SSH
       - name: Deploy to server
