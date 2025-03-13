@@ -4,6 +4,7 @@ import cors from 'cors'
 import { connectDB } from './db.js';
 import dotenv from "dotenv"
 import userRoutes from './src/routes/user.routes.js';
+import authRoutes from './src/routes/auth.routes.js';
 
 const app = express();
 
@@ -23,8 +24,9 @@ app.get('/', (req, res) =>{
 })
 
 app.use('/api', userRoutes)
+app.use('/api', authRoutes)
 
-app.post('/login', (req, res) =>{
+/* app.post('/login', (req, res) =>{
    const {email, password} = req.body;
    console.log('Datos recibidos:', { email, password });
    if (email === 'usuario@example.com' && password === 'contraseña') {
@@ -34,7 +36,7 @@ app.post('/login', (req, res) =>{
      // Si las credenciales son inválidas, enviar un error
      res.status(401).json({ message: 'Credenciales incorrectas' });
    }
-})
+}) */
 
 app.listen(4000, '0.0.0.0', (req, res) =>{
     console.log('listening on port 4000');
