@@ -13,7 +13,7 @@ app.use(cors({
 }))
 
 app.get('/', (req, res) =>{
-    res.send('Hello World Lind');
+    res.send('Hello World Essam');
 })
 
 app.post('/login', (req, res) =>{
