@@ -19,7 +19,7 @@ app.use(cors({
 connectDB();
 
 app.get('/', (req, res) =>{
-    res.send('Hello World Essam');
+    res.send('Backend isAlive');
 })
 
 app.use('/api', userRoutes)
