@@ -9,6 +9,11 @@ const cafeSchema = new mongoose.Schema({
     },
     users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     roles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }],
+    services: [{
+        service: {type: mongoose.Schema.Types.ObjectId, ref: 'Service'},
+        prices: Object
+    }],
+    sales: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Sale' }]
 })
 
 const Cafe = mongoose.model('Cafe', cafeSchema);

@@ -5,7 +5,9 @@ export const createUnits = async (req, res) => {
 
     const newUnit = new Unit({ name, mine }); // Crear un nuevo usuario con los datos recibidos
     try {
-        await newUnit.save(); // Guardar el nuevo usuario en la base de datos
+        await newUnit.save();
+        
+        // Guardar el nuevo usuario en la base de datos
         res.status(201).json(newUnit); // Enviar el usuario creado como respuesta
     } catch (error) {
         console.error(error);

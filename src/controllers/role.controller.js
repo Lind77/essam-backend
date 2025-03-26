@@ -18,7 +18,7 @@ export const createRole = async (req, res) => {
     try {
         await newRole.save();
         
-        if (entityType === 1){
+        if (entityType == 1){
             const areaSelected = await Area.findById(entityId);
             areaSelected.roles.push(newRole._id)
             await areaSelected.save()

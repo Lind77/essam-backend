@@ -1,12 +1,20 @@
 import Cafe from "../models/Cafe.js";
+import Unit from "../models/Unit.js"
 
 export const createCafes = async (req, res) => {
     const { name, unit } = req.body; // Obtener los datos del usuario desde el cuerpo de la petición
 
     const newCafe = new Cafe({ name, unit, roles:[] }); // Crear un nuevo usuario con los datos recibidos
     try {
-        await newCafe.save(); // Guardar el nuevo usuario en la base de datos
-        res.status(201).json(newCafe); // Enviar el usuario creado como respuesta
+        await newCafe.save();
+
+        const unitOwner = await Unit.findById(unit)
+
+        unitOwner.cafes.push(newCafe._id)
+        await unitOwner.save()
+        
+        const populatedCafe = await Cafe.findById(newCafe._id).populate('unit');// Guardar el nuevo usuario en la base de datos
+        res.status(201).json(populatedCafe); // Enviar el usuario creado como respuesta
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error creating Cafe' }); // Manejar errores
@@ -15,7 +23,14 @@ export const createCafes = async (req, res) => {
 
 export const getCafes = async (req, res) => {
     try {
-        const cafes = await Cafe.find().populate('roles'); // Obtener todos los usuarios de la colección
+        const cafes = await Cafe.find().populate(
+            {
+                path: 'unit',
+                populate:{
+                    path: 'mine'
+                }
+            }
+        ).populate('roles').populate('services'); // Obtener todos los usuarios de la colección
         res.json(cafes); // Enviar la lista de usuarios como respuesta JSON
     } catch (error) {
         console.error(error);

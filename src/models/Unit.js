@@ -6,7 +6,12 @@ const unitSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'Mine'
-    }
+    },
+    cafes: [{
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Cafe'
+    }]
 })
 
 const Unit = mongoose.model('Unit', unitSchema);

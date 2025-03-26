@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
             required: [true, "La contraseña es obligatoria"] 
         }
     },
-    role: Array,
+    role: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Role' }],
     permissions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Permission' }],
     entityType:{
         type: Number,

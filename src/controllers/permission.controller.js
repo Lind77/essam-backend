@@ -1,4 +1,5 @@
 import Permission from "../models/Permission.js";
+import Role from "../models/Role.js";
 import User from "../models/User.js";
 
 export const createPermission = async(req, res) =>{
@@ -45,6 +46,22 @@ export const syncUserPermissions = async(req, res) =>{
         )
 
         return res.status(200).json(updatedUser)
+    } catch (error) {
+        return res.status(404).json({msg:"Error syncing permissions"})
+    }
+}
+
+export const syncRolePermissions = async(req, res) =>{
+    try {
+
+        const { roleId, selectedPermissions } = req.body
+
+        const updateRole = await Role.findByIdAndUpdate(roleId, 
+            {permissions: selectedPermissions},
+            {new: true}
+        )
+
+        return res.status(200).json(updateRole)
     } catch (error) {
         return res.status(404).json({msg:"Error syncing permissions"})
     }

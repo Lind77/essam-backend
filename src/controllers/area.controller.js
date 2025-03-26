@@ -22,7 +22,7 @@ export const getAreas = async(req, res) =>{
                     path: 'businnes'
                 }
             }
-        ); // Obtener todos los usuarios de la colección
+        ).populate('roles'); // Obtener todos los usuarios de la colección
         res.json(areas); // Enviar la lista de usuarios como respuesta JSON
     } catch (error) {
         console.error(error);
