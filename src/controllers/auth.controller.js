@@ -17,7 +17,7 @@ export const logIn = async(req, res) => {
             }
         ).lean();
 
-        const rolePermissions = user.role[0]?.permissions || [];
+        const rolePermissions = user.role?.[0]?.permissions || [];
         const userPermissions = user.permissions || [];
 
         const allPermissions = [...userPermissions, ...rolePermissions];
