@@ -6,18 +6,22 @@ export const createSale = async (req, res) => {
 
     const now = new Date();
 
-    const existingSale = await Sale.findOne({
-        "diner.dinerId": diner._id,
-        "service.serviceId": service._id,
-        dateTime: {
-          $gte: new Date(new Date().setHours(0, 0, 0, 0)), // Hoy a las 00:00:00
-          $lt: new Date(new Date().setHours(23, 59, 59, 999)) // Hoy a las 23:59:59
+    if(paymentType === 1){
+        const existingSale = await Sale.findOne({
+            "diner.dinerId": diner._id,
+            "service.serviceId": service._id,
+            dateTime: {
+              $gte: new Date(new Date().setHours(0, 0, 0, 0)), // Hoy a las 00:00:00
+              $lt: new Date(new Date().setHours(23, 59, 59, 999)) // Hoy a las 23:59:59
+            }
+          }).exec();
+    
+        if(existingSale){
+            return res.status(400).json({ message: 'Venta ya registrada'})
         }
-      }).exec();
-
-    if(existingSale){
-        return res.status(400).json({ message: 'Venta ya registrada'})
     }
+
+    
 
     const newSale = new Sale({
         diner:{

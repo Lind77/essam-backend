@@ -74,6 +74,7 @@ app.use('/api', saleRoutes)
 app.use('/api',businnesContractRoutes)
 
 
+
 app.listen(4000, '0.0.0.0', (req, res) =>{
     console.log('listening on port 4000');
 })
