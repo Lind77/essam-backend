@@ -6,7 +6,7 @@ export const createSale = async (req, res) => {
 
     const now = new Date();
 
-    if(paymentType === 1){
+    if(paymentType == 1){
         const existingSale = await Sale.findOne({
             "diner.dinerId": diner._id,
             "service.serviceId": service._id,
