@@ -1,9 +1,9 @@
 import Diner from "../models/Diner.js";
 
 export const createDiners = async (req, res) => {
-    const { name, dni, businnesClient, unit } = req.body; // Obtener los datos del usuario desde el cuerpo de la petición
+    const { name, dni, businnesClient, unit, registerCode } = req.body; // Obtener los datos del usuario desde el cuerpo de la petición
 
-    const newDiner = new Diner({ name, dni, businnesClient ,unit }); // Crear un nuevo usuario con los datos recibidos
+    const newDiner = new Diner({ name, dni, businnesClient ,unit, registerCode }); // Crear un nuevo usuario con los datos recibidos
     try {
         await newDiner.save();
         
@@ -71,11 +71,11 @@ export const createDinersExcel = async (req, res) => {
         // Iterar sobre cada diner en el array
         for (const dinerData of dinersData) {
             
-            const { name, dni, unit, businnesClient } = dinerData;
+            const { name, dni, unit, businnesClient, registerCode } = dinerData;
 
 
             // Crear un nuevo Diner
-            const newDiner = new Diner({ name, dni, unit, businnesClient });
+            const newDiner = new Diner({ name, dni, unit, businnesClient, registerCode });
 
             // Guardar el Diner en la base de datos
             await newDiner.save();

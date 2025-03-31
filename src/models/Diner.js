@@ -7,6 +7,7 @@ const dinerSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    registerCode: String,
     unit : {
             type: mongoose.Schema.Types.ObjectId,
             required: true,

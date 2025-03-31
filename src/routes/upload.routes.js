@@ -32,8 +32,9 @@ router.post("/upload", upload.single("file"), async(req, res) => {
         name: row.name, // Asegúrate de que "Nombre" sea el nombre de la columna en el Excel
         dni: row.dni,     // Asegúrate de que "DNI" sea el nombre de la columna en el Excel
         businnesClient: row.businnesClient, // Asegúrate de que "Cliente Negocio" sea el nombre de la columna en el Excel
-        unit: row.unit  // Asegúrate de que "Unidad" sea el nombre de la columna en el Excel
-    }));
+        unit: row.unit,  // Asegúrate de que "Unidad" sea el nombre de la columna en el Excel
+        registerCode: row.registerCode
+      }));
 
     // Llamar a createDiners con los datos mapeados
     const createdDiners = await createDinersExcel({ body: dinersData }, res);
