@@ -21,15 +21,9 @@ export const createSale = async (req, res) => {
         }
     }
 
-    
-
     const newSale = new Sale({
-        diner:{
-            dinerId: diner._id,
-            dinerName: diner.name,
-            dinerDni: diner.dni
-        },
-        bussinesClientName: diner.businnesClient.name,
+        diner,
+        bussinesClientName: diner.businnesClient?.name,
         service:{
             serviceId: service._id,
             serviceName: service.name
