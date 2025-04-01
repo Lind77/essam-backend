@@ -78,6 +78,8 @@ export const syncPricesServicesCafe = async(req, res) =>{
 
         const serviceToUpdate = selectedCafe.services.find(s => s._id == service._id)
 
+        selectedCafe.markModified('services');
+
         serviceToUpdate.prices = service.prices
 
         await selectedCafe.save();
