@@ -46,6 +46,10 @@ export const syncServicesCafe = async(req, res) =>{
             return res.status(404).json({ msg: "Cafe not found" });
         }
 
+        updatedCafe.services = []
+
+        await updatedCafe.save();
+
         // Usa Promise.all para esperar a que todas las operaciones asíncronas se completen
         const services = await Promise.all(
             selectedServices.map(async (serviceId) => {
@@ -53,9 +57,8 @@ export const syncServicesCafe = async(req, res) =>{
                 return service; // Devuelve el servicio encontrado
             })
         );
-
         // Agrega los servicios al café
-        updatedCafe.services.push(...services);
+        updatedCafe.services = services;
 
         // Guarda el café actualizado en la base de datos
         await updatedCafe.save();
