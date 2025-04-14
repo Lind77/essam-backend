@@ -22,6 +22,7 @@ import uploadRoutes from './src/routes/upload.routes.js'
 import serviceRoutes from './src/routes/service.routes.js'
 import saleRoutes from './src/routes/sales.routes.js'
 import businnesContractRoutes from './src/routes/businnesContract.routes.js'
+import invoiceRoutes from './src/routes/invoices.routes.js'
 
 const app = express();
 
@@ -73,7 +74,7 @@ app.use('/api', saleRoutes)
 
 app.use('/api',businnesContractRoutes)
 
-
+app.use('/api',invoiceRoutes)
 
 app.listen(4000, '0.0.0.0', (req, res) =>{
     console.log('listening on port 4000');

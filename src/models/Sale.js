@@ -20,7 +20,8 @@ const saleSchema = new mongoose.Schema({
         cafeName: String
     },
     price: Number,
-    paymentType: Number
+    paymentType: Number,
+    details: Array
 })
 
 const Sale = mongoose.model('Sale', saleSchema);
